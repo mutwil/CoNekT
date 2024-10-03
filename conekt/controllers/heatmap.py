@@ -104,9 +104,9 @@ def heatmap_main():
 
     # Fetch data for second example
     example2 = {
-        "comparable_probes": " ".join(comparative_profiles)
-        if len(comparative_profiles) > 0
-        else None,
+        "comparable_probes": (
+            " ".join(comparative_profiles) if len(comparative_profiles) > 0 else None
+        ),
         "comparable_options": "rnorm",
     }
 

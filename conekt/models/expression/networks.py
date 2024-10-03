@@ -439,12 +439,12 @@ class ExpressionNetwork(db.Model):
                 "id": node.probe,
                 "name": node.probe,
                 "probe_id": node.id,
-                "gene_id": int(node.sequence_id)
-                if node.sequence_id is not None
-                else None,
-                "gene_name": node.sequence.name
-                if node.sequence_id is not None
-                else node.probe,
+                "gene_id": (
+                    int(node.sequence_id) if node.sequence_id is not None else None
+                ),
+                "gene_name": (
+                    node.sequence.name if node.sequence_id is not None else node.probe
+                ),
                 "node_type": "query",
                 "depth": 0,
             }
@@ -517,12 +517,14 @@ class ExpressionNetwork(db.Model):
                                     ),
                                     "depth": i,
                                     "link_score": link["link_score"],
-                                    "link_pcc": link["link_pcc"]
-                                    if "link_pcc" in link.keys()
-                                    else None,
-                                    "hrr": link["hrr"]
-                                    if "hrr" in link.keys()
-                                    else None,
+                                    "link_pcc": (
+                                        link["link_pcc"]
+                                        if "link_pcc" in link.keys()
+                                        else None
+                                    ),
+                                    "hrr": (
+                                        link["hrr"] if "hrr" in link.keys() else None
+                                    ),
                                     "edge_type": edge_type,
                                 }
                             )
@@ -558,9 +560,11 @@ class ExpressionNetwork(db.Model):
                                 ),
                                 "depth": depth + 1,
                                 "link_score": link["link_score"],
-                                "link_pcc": link["link_pcc"]
-                                if "link_pcc" in link.keys()
-                                else None,
+                                "link_pcc": (
+                                    link["link_pcc"]
+                                    if "link_pcc" in link.keys()
+                                    else None
+                                ),
                                 "hrr": link["hrr"] if "hrr" in link.keys() else None,
                                 "edge_type": edge_type,
                             }
@@ -625,9 +629,9 @@ class ExpressionNetwork(db.Model):
                                 ),
                                 "depth": 0,
                                 "link_score": n["link_score"],
-                                "link_pcc": n["link_pcc"]
-                                if "link_pcc" in n.keys()
-                                else None,
+                                "link_pcc": (
+                                    n["link_pcc"] if "link_pcc" in n.keys() else None
+                                ),
                                 "hrr": n["hrr"] if "hrr" in n.keys() else None,
                                 "edge_type": p.method.edge_type,
                             }
@@ -726,9 +730,11 @@ class ExpressionNetwork(db.Model):
 
                 network[query] = {
                     "probe": query,
-                    "sequence_id": sequence_dict[query.upper()]
-                    if query.upper() in sequence_dict.keys()
-                    else None,
+                    "sequence_id": (
+                        sequence_dict[query.upper()]
+                        if query.upper() in sequence_dict.keys()
+                        else None
+                    ),
                     "linked_probes": [],
                     "total_count": 0,
                     "method_id": network_method.id,
@@ -744,9 +750,11 @@ class ExpressionNetwork(db.Model):
                                 link = {
                                     "probe_name": name,
                                     "gene_name": name,
-                                    "gene_id": sequence_dict[name.upper()]
-                                    if name.upper() in sequence_dict.keys()
-                                    else None,
+                                    "gene_id": (
+                                        sequence_dict[name.upper()]
+                                        if name.upper() in sequence_dict.keys()
+                                        else None
+                                    ),
                                     "link_score": i,
                                     "link_pcc": value,
                                 }

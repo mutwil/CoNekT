@@ -1,6 +1,7 @@
 """
 Parser class for interpro.xml: xml file from EBI with the info on all InterPro Domains
 """
+
 import xml.etree.ElementTree as ET
 import csv
 

@@ -1,6 +1,7 @@
 """
 A set of functions designed to work with colors and shapes for websites
 """
+
 import hashlib
 import math
 

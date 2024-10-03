@@ -111,7 +111,7 @@ def species_download_coding(species_id):
         ).where(Sequence.__table__.c.species_id == current_species.id)
     ).fetchall()
 
-    for (name, coding_sequence) in sequences:
+    for name, coding_sequence in sequences:
         output.append(">" + name)
         output.append(coding_sequence)
 

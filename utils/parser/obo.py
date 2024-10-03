@@ -1,6 +1,7 @@
 """
 Parser class for obo files (ontology structure files).
 """
+
 from copy import deepcopy
 
 import gzip

@@ -1,6 +1,7 @@
 """
 Set of functions to export the database to the ftp directory
 """
+
 import csv
 import gzip
 import os
@@ -43,7 +44,7 @@ def export_coding_sequences(SEQUENCE_PATH):
         ).fetchall()
 
         with gzip.open(filename, "wb") as f:
-            for (name, coding_sequence) in sequences:
+            for name, coding_sequence in sequences:
                 f.write(bytes(">" + name + "\n" + coding_sequence + "\n", "UTF-8"))
 
 
@@ -71,7 +72,7 @@ def export_protein_sequences(SEQUENCE_PATH):
         ).fetchall()
 
         with gzip.open(filename, "wb") as f:
-            for (name, sequence_type, sequence) in sequences:
+            for name, sequence_type, sequence in sequences:
                 if sequence_type == "protein_coding":
                     f.write(
                         bytes(">" + name + "\n" + translate(sequence) + "\n", "UTF-8")

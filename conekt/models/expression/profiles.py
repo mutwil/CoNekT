@@ -323,9 +323,11 @@ class ExpressionProfile(db.Model):
                 new_probe = {
                     "species_id": species_id,
                     "probe": transcript,
-                    "sequence_id": sequence_dict[transcript.upper()]
-                    if transcript.upper() in sequence_dict.keys()
-                    else None,
+                    "sequence_id": (
+                        sequence_dict[transcript.upper()]
+                        if transcript.upper() in sequence_dict.keys()
+                        else None
+                    ),
                     "profile": json.dumps(
                         {"order": order, "colors": colors, "data": profile}
                     ),

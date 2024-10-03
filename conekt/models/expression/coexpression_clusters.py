@@ -420,12 +420,14 @@ class CoexpressionCluster(db.Model):
                 {
                     "id": node.probe,
                     "name": node.probe,
-                    "gene_id": int(node.sequence_id)
-                    if node.sequence_id is not None
-                    else None,
-                    "gene_name": node.sequence.name
-                    if node.sequence_id is not None
-                    else node.probe,
+                    "gene_id": (
+                        int(node.sequence_id) if node.sequence_id is not None else None
+                    ),
+                    "gene_name": (
+                        node.sequence.name
+                        if node.sequence_id is not None
+                        else node.probe
+                    ),
                     "depth": 0,
                 }
             )
@@ -450,9 +452,9 @@ class CoexpressionCluster(db.Model):
                             ),
                             "depth": 0,
                             "link_score": link["link_score"],
-                            "link_pcc": link["link_pcc"]
-                            if "link_pcc" in link.keys()
-                            else None,
+                            "link_pcc": (
+                                link["link_pcc"] if "link_pcc" in link.keys() else None
+                            ),
                             "hrr": link["hrr"] if "hrr" in link.keys() else None,
                             "edge_type": cluster.method.network_method.edge_type,
                         }

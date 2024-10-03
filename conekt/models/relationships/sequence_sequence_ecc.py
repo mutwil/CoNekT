@@ -423,9 +423,9 @@ class SequenceSequenceECCAssociation(db.Model):
                         {
                             "source": sequence_name,
                             "target": gene_name,
-                            "link_score": node["link_score"]
-                            if "link_score" in node
-                            else 0,
+                            "link_score": (
+                                node["link_score"] if "link_score" in node else 0
+                            ),
                             "edge_type": "expression",
                             "ecc_pair_color": "#3D3",
                         }

@@ -64,9 +64,11 @@ class CrossSpeciesExpressionProfile:
                     "order": self.conditions,
                     "data": {},
                     "raw_data": {
-                        c: max(current_profile["data"][c])
-                        if c in current_profile["data"].keys()
-                        else None
+                        c: (
+                            max(current_profile["data"][c])
+                            if c in current_profile["data"].keys()
+                            else None
+                        )
                         for c in self.conditions
                     },
                 }
@@ -109,12 +111,14 @@ class CrossSpeciesExpressionProfile:
                 converted_profiles.append(
                     {
                         "sequence_id": p.sequence_id,
-                        "sequence_name": p.sequence.name
-                        if p.sequence is not None
-                        else None,
-                        "shortest_alias": p.sequence.shortest_alias
-                        if p.sequence is not None
-                        else None,
+                        "sequence_name": (
+                            p.sequence.name if p.sequence is not None else None
+                        ),
+                        "shortest_alias": (
+                            p.sequence.shortest_alias
+                            if p.sequence is not None
+                            else None
+                        ),
                         "species_id": p.species_id,
                         "low_expressed": 1 if low_expressed else 0,
                         "profile": parsed_profile,

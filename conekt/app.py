@@ -13,6 +13,7 @@ Everything that needs to be set up to get flask running is initialized in this f
 
   * set up global things like the search form and custom 403/404 error messages
 """
+
 from flask import Flask, render_template, g, request, url_for, flash, redirect
 from flask_admin.menu import MenuLink
 from flask_login import current_user
