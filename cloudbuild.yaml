@@ -1,0 +1,12 @@
+steps:
+- name: 'gcr.io/cloud-builders/pack'
+  args:
+    - build
+    - '--builder=gcr.io/buildpacks/builder:v1'
+    - '--env'
+    - 'GOOGLE_RUNTIME=python'
+    - '--env'
+    - 'GOOGLE_ENTRYPOINT=python app.py'
+    - 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
+images:
+- 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
