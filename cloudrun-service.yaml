@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: conekt2024
+spec:
+  template:
+    spec:
+      containers:
+      - image: asia-southeast1-docker.pkg.dev/conekt-instances-2024/cloud-run-source-deploy/conekt/conekt2024:99cb562338dcf08d17f5e4c19939b1b718557929 # Replace with your Docker image URL
+        command: ["gunicorn", "--bind", ":8080", "--workers", "2", "--threads", "8", "Conekt.app:app"]
+        ports:
+        - containerPort: 8080
