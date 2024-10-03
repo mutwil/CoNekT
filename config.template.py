@@ -4,7 +4,6 @@ Configuration of the website and database.
 Copy this file to config.py and change the settings accordingly
 """
 
-
 import os
 import tempfile
 
