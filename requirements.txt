@@ -28,6 +28,7 @@ Flask-Testing==0.7.1
 flask-whooshee==0.6.0
 Flask-WTF==0.14.2
 future==0.16.0
+gunicorn
 htmlmin==0.1.12
 humanfriendly==4.15.1
 idna==2.7
